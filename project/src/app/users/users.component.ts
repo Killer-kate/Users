@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { USERS } from '../mock-user';
 
+import { NgxDadataModule, DadataConfig, DadataType} from '@kolkov/ngx-dadata';
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -21,4 +23,14 @@ export class UsersComponent implements OnInit {
   onSelect(users: User): void {
     this.selectedUser = users;
   }
+
+  configAddress: DadataConfig = {
+    apiKey: '2e51c5fbc1a60bd48face95951108560bf03f7d9',
+    type: DadataType.address,
+  };
+  configFio: DadataConfig = {
+    apiKey: '2e51c5fbc1a60bd48face95951108560bf03f7d9',
+    type: DadataType.fio,
+  };
+
 }
