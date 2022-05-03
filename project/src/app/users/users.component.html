@@ -1,14 +1,4 @@
-<ul class="contayner-fluid d-flex flex-wrap justify-content-around" style="list-style-type:none;">
-  <li *ngFor="let user of users" [class.selected]="user === selectedUser" (click)="onSelect(user)">
-    <div class="alert alert-primary" role="alert" style="width:300px; ">
-      <span>{{user.id}} {{user.name}}<br>
-        {{user.address}}
-      </span>
-    </div>
-  </li>
-</ul>
-
-<div *ngIf="selectedUser" class="contayner-fluid alert alert-dark mb-3" role="alert" style="width:400px; margin:0 auto;">
+<a name="top"></a><div *ngIf="selectedUser" class="contayner-fluid alert alert-dark mb-3" role="alert" style="width:400px; margin:0 auto;">
   <h2>{{selectedUser.name}}</h2>
   <p>Редактирование:</p>
   <div>
@@ -19,3 +9,18 @@
     </ngx-dadata>
   </div>
 </div>
+
+<ul class="contayner-fluid d-flex flex-wrap justify-content-around" style="list-style-type:none;">
+  <li *ngFor="let user of users" [class.selected]="user === selectedUser" (click)="onSelect(user)">
+      <a href="#top" style="text-decoration:none;"><div class="alert alert-primary" role="alert" style="width:400px; margin-right:30px;">
+        
+      <span>id:{{user.id}}<br>
+        Имя: {{user.name}}<br>
+        Адресс: {{user.address}}
+      </span>
+    </div> 
+</a>
+</li>
+
+</ul>
+

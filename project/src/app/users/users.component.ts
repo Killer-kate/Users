@@ -12,7 +12,7 @@ import { NgxDadataModule, DadataConfig, DadataType} from '@kolkov/ngx-dadata';
 
 export class UsersComponent implements OnInit {
 
-  users = USERS;
+  public users: User[] = [];
   selectedUser?: User;
 
   constructor() { }
@@ -33,4 +33,35 @@ export class UsersComponent implements OnInit {
     type: DadataType.fio,
   };
 
-}
+    private usersLoaded: number = 0; 
+    private LOAD_USERS_ON_START: number = 25;
+    private SCROLL_LOADING_GAP: number = 100;
+    
+    ngAfterViewInit(): void {
+        document.addEventListener("scroll", () => {
+          this.onScroll();
+        });
+    
+        for (let i = 0; i < this.LOAD_USERS_ON_START; i++) {
+           this.loadNewData();
+        }
+      }
+    public onScroll() {
+        if (this.isCameraTouchesBottom()) {
+          this.loadNewData();
+        }
+      }
+    
+    public loadNewData(): void {
+      if (this.usersLoaded >= USERS.length) return;
+    
+      this.users = [...this.users, USERS[this.usersLoaded]]
+      this.usersLoaded++;
+    }
+
+    private isCameraTouchesBottom(): boolean {
+      return (document.body.offsetHeight + document.body.offsetTop <= window.scrollY + window.innerHeight + this.SCROLL_LOADING_GAP);
+    }
+    
+    }
+
